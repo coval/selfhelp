@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     #url(r'^start/', 'flowik.views.simpleview', name='simple'),
     url(r'^start/(?P<step_id>\d+)/$', 'dbflow.views.step_display', name='step'),
     url(r'^start/$', 'dbflow.views.step_display', name='step'),
+    url(r'^post_redirect/$', 'dbflow.views.post_redirect', name='post'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

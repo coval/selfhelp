@@ -19,12 +19,14 @@
 		{{ step.name }}
 
 	</div>
+        <form action="/post_redirect/" method="post">
+        {% csrf_token %}
 
 	<div id="package-list" class="ui-widget-content ui-corner-all">
         	<h3 class="ui-widget-header ui-corner-all">Choose Problem category / Next step</h3>
-		<select>
+		<select name="next_step">
 		{% for step in next_steps %}
-        		<option>{{ step.name }}</option>
+        		<option value="{{ step.id }}">{{ step.name }}</option>
 		{% endfor %}
 		</select>
 
@@ -49,7 +51,7 @@
 							{{ field.name }}
 						</td>
 						<td>
-							<p><input id="{{ field.id }}" maxlength="250" name="name" type="text" /></p>
+							<p><input id="field_{{ field.id }}" maxlength="250" name="field_{{ field.id }}" type="text" /></p>
 						</td>
 					</tr>
 					{% endfor %}
@@ -59,9 +61,9 @@
 	</div>
 	
 	<div id="refresh_comp_button">
-		<a id="button_refresh" href="#">Submit</a>
+                <input type="submit" value="Send">
 	</div>
-
+        </FORM>
 </div>
 
 
