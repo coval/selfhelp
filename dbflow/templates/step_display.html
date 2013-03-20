@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+
+{% block menu %}
+<!--		<li><a href="#">Packages</a></li>
+		<li class="last"><a href="#">Components</a></li>-->
+{% endblock menu %}
+
+{% block content %}
+
+
+<div id="main">
+
+	<h2><a href="/start/">Step name: {{step.name}}</a></h2>
+
+
+	<div id="package-list" class="ui-widget-content ui-corner-all">
+		<h3 class="ui-widget-header ui-corner-all">Description</h3>
+		{{ step.name }}
+
+	</div>
+
+	<div id="package-list" class="ui-widget-content ui-corner-all">
+        	<h3 class="ui-widget-header ui-corner-all">Choose Problem category / Next step</h3>
+		<select>
+		{% for step in next_steps %}
+        		<option>{{ step.name }}</option>
+		{% endfor %}
+		</select>
+
+	</div>
+
+
+	<div id="package-list" class="ui-widget-content ui-corner-all">
+		<h3 class="ui-widget-header ui-corner-all">Fill following fields</h3>
+		<div class="package_table">
+			<table width="100%" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th><h3>Name</h3></th>
+						<th><h3>Field</h3></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for field in fields %}
+					<tr class="{% cycle 'dark' 'light' %}">
+						<td>
+							<!--h3><a href="{{ package.get_absolute_url }}">{{ package.version }}</a></h3-->
+							{{ field.name }}
+						</td>
+						<td>
+							<p><input id="{{ field.id }}" maxlength="250" name="name" type="text" /></p>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div id="refresh_comp_button">
+		<a id="button_refresh" href="#">Submit</a>
+	</div>
+
+</div>
+
+
+	<div id="side" class="ui-widget-content ui-corner-all">
+		<h3 class="ui-widget-header ui-corner-all">Help window</h3>
+		<ul>
+			<li><a href="#">Version of packages view</a><br />Here you can see released versions of project {{ project.name }}.</li>
+			<li><a href="#">Maven repository</a><br />Released versions are saved in maven repository.</li>
+			<li><a href="#">Check available packages</a><br />You can refresh this list by pushing this button.</li>
+		</ul>
+	</div>
+
+
+{% endblock content %}
