@@ -23,6 +23,7 @@ def step_display(request, step_id=0):
     if getattr(step, "field", None):
     	c['fields'] = step.field.all()
     c['step'] = step
+    c['step_id'] = step_id
     form = FieldForm()
     # print(c)
     c['form'] = form.as_p()

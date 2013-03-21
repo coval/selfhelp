@@ -6,7 +6,7 @@ from django.forms import ModelForm
 class Field(models.Model):
     name = models.CharField(max_length=250)
     description = models.CharField(max_length=250, blank=True)
-    #field_type = #multiple choise, text itp
+    field_type = models.IntegerField(null=True, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -14,7 +14,7 @@ class Field(models.Model):
 class Step(models.Model):
     root = models.ForeignKey('self', blank=True, null=True)
     name = models.CharField(max_length=250)
-    #description = models.CharField(max_length=250, blank=True)
+    description = models.TextField(max_length=3250, blank=True)
     field = models.ManyToManyField(Field, blank=True, verbose_name="field in form")
     request_url = models.CharField(max_length=250, blank=True)
     

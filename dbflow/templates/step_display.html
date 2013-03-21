@@ -11,14 +11,29 @@
 
 <div id="main">
 
+{% if step_id %}
 	<h2><a href="/start/">Step name: {{step.name}}</a></h2>
-
-
+{% endif %}
 	<div id="package-list" class="ui-widget-content ui-corner-all">
 		<h3 class="ui-widget-header ui-corner-all">Description</h3>
-		{{ step.name }}
+	{% if step_id %}
+		{{ step.description }}
+        {% else %}	
 
+This is a cool tool:</br>
+- It helps you fill all data to quickly analyse your issue and give you response. </br>
+- It surrest you or provide you final solution in case of tipical problems.</br>
+- It could inform you about current infrastructural isues before trying to raise a ticket. </br>
+
+        {% endif %}
 	</div>
+        {% if step_id %}
+        <div id="package-list" class="ui-widget-content ui-corner-all">
+                <h3 class="ui-widget-header ui-corner-all">Resolution suggestion based on previous answers</h3>
+                Not available yet, but that will be cool.
+
+        </div>
+        {% endif %}
         <form action="/post_redirect/" method="post">
         {% csrf_token %}
 
@@ -36,6 +51,8 @@
 	<div id="package-list" class="ui-widget-content ui-corner-all">
 		<h3 class="ui-widget-header ui-corner-all">Fill following fields</h3>
 		<div class="package_table">
+
+			{% if fields %}
 			<table width="100%" cellspacing="0" cellpadding="0">
 				<thead>
 					<tr>
@@ -57,11 +74,14 @@
 					{% endfor %}
 				</tbody>
 			</table>
+			{% else %}
+				We will ask you to fill a fields here if we'll near more information about your case.
+			{% endif %}
 		</div>
 	</div>
 	
 	<div id="refresh_comp_button">
-                <input type="submit" value="Send">
+                <input type="submit" value=" Submit ">
 	</div>
         </FORM>
 </div>
@@ -70,9 +90,9 @@
 	<div id="side" class="ui-widget-content ui-corner-all">
 		<h3 class="ui-widget-header ui-corner-all">Help window</h3>
 		<ul>
-			<li><a href="#">Version of packages view</a><br />Here you can see released versions of project {{ project.name }}.</li>
-			<li><a href="#">Maven repository</a><br />Released versions are saved in maven repository.</li>
-			<li><a href="#">Check available packages</a><br />You can refresh this list by pushing this button.</li>
+			<li><a href="#">Problem category</a><br />Please provide problem category as detailed as possible. You can choose to create a ticket anytime and data provided will be send to us.</li>
+			<li><a href="#">Filling fields</a><br />Please fill suggested fields, this will speedup ticket resolution and could provide automatic resolution of your problem.</li>
+			<li><a href="#">Automatic resolution</a><br />In this tab, you can find automatic resulution suggestion, based on provided data. When resolution will be enabled, we will show it to you.</li>
 		</ul>
 	</div>
 
